@@ -9,4 +9,7 @@ router.get('/:id', ContestController.getContestById);
 router.put('/:id', ContestController.updateContest);
 router.delete('/:id', ContestController.deleteContest);
 
+router.get('/contest/:contestId', ContestController.showContestPage);
+
+
 module.exports = router;

@@ -1,38 +1,202 @@
+<!-- contestPage.ejs -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="contestPageStyles.css">
+    <title>Contest Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Raleway', sans-serif;
+            background-color: #1a1a1a;
+        }
+
+        .container {
+            margin-top: 30px;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            position: absolute;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+            ;
+            color: rgb(255, 255, 255);
+            font-family: "Courier New", Courier, monospace;
+            font-size: 1em;
+            padding: 3em 1em;
+            width: 80em;
+            height: 45em;
+            box-shadow: 10px 10px 200px 0.1px rgba(0, 0, 0, 1), -1px -1px 1px #3d3d3d;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+        }
+
+        .cardHeader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1.5em;
+            background-color: #333;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            padding: 0 0.7em;
+            box-sizing: border-box;
+        }
+
+        .cardTitle {
+            /* float: right; */
+            position: fixed;
+            line-height: 1.5em;
+            font-size: large;
+            font-weight: 570;
+            color: #eee;
+            margin-left: 150px;
+        }
+
+        .cardControls {
+            float: left;
+        }
+
+        .Control {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            margin-top: 0.2em;
+            margin-left: 1px;
+            border-radius: 50%;
+            background-color: #777;
+        }
+
+        .redControl {
+            background-color: #e33;
+        }
+
+        .yellowControl {
+            background-color: #ee0;
+        }
+
+        .greenControl {
+            background-color: #0b0;
+        }
+
+        .questionCard {
+            width: 1210px;
+            max-height: 300px;
+            overflow: auto;
+            background: #262626;
+            border-radius: 10px;
+            border: 1px solid #3F3F40;
+            display: grid;
+            /* Use CSS Grid */
+            grid-template-columns: repeat(2, 1fr);
+            /* Two equal-width columns */
+            align-items: center;
+            /* Aligns items vertically in the center */
+            padding-right: 20px;
+            padding-left: 20px;
+            /* Simplified padding */
+            color: #BDBFB7;
+
+        }
+
+        .one,
+        .two {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .one {
+            justify-content: flex-start;
+            /* Align items at the start */
+            overflow: auto;
+        }
+
+        .two {
+            justify-content: center;
+            /* Align items in the center */
+            overflow: auto;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            color: white;
+        }
+
+        *::-webkit-scrollbar,
+        *::-webkit-scrollbar-thumb {
+            width: 26px;
+            border-radius: 30px;
+            background-clip: padding-box;
+            border: 10px solid transparent;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            box-shadow: inset0 0 0 10px;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-    <div class="card">
-        <div class="cardHeader" >
-            <div class="cardTitle"></div>
-
-            <div class="cardControls">
-                <div class="Control redControl"></div>
-                <div class="Control yellowControl"></div>
-                <div class="Control greenControl"></div>
+        <div class="card">
+            <div class="cardHeader">
+                <div class="cardTitle"></div>
+                <div class="cardControls">
+                    <div class="Control redControl"></div>
+                    <div class="Control yellowControl"></div>
+                    <div class="Control greenControl"></div>
+                </div>
             </div>
+
+            <a href="/home">go_back</a>
+
+            <h1>Contest Page</h1>
+
+            <%= contest.startdate %>
+            <br>
+            <%= contest.enddate %>
+
+            <% arrProblems.forEach(problem=> { %>
+
+                <a href="/RCET/practise/${problem.QuestionId}/0/0">
+                    <div class="questionCard">
+                        <div class="one">
+                            <p>Question Title: <%= problem.text %>
+                            </p>
+                        </div>
+                        <div class="two">
+                            <p>Difficulty: <%= problem.difficulty %>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+        <% }); %>
+
+                
         </div>
 
-        <a href="">
-            <div class="questionCard">x
-                <div class="one">
-                    <p>Question Title: <%= QuestionTitle %></p>
-                    <p>Status: <%=Status%></p>
-                </div>
-                <div class="two">
-                    <p>Difficulty: <%= difficulty %></p>
-                    <p >Score: <%= QuestionScore %></p>
-                </div>
-            </div>
-        </a>
 
     </div>
-    </div>
+
 </body>
+
 </html>

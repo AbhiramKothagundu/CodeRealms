@@ -7,9 +7,9 @@ const organiserRoutes = require('./routes/organiserRoutes');
 const userRoutes = require('./routes/UserRoutes');
 const realmRoutes = require('./routes/realmRoutes');
 const problemRoutes = require('./routes/problemRoutes');
+const contestRoutes = require('./routes/contestRoutes');
 
 const cookieParser = require('cookie-parser');
-
 const db = require('./db/databaseConnection');
 
 const app = express();
@@ -28,6 +28,7 @@ app.use("/", organiserRoutes);
 app.use("/", userRoutes);
 app.use("/", realmRoutes);
 app.use("/", problemRoutes);
+app.use("/" , contestRoutes);
 
 
 

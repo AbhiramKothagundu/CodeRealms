@@ -230,7 +230,7 @@ exports.home = async (req, res) => {
                 const contest = await Contest.findById(contestId);
                 if (contest) {
                     // Add contest name to contest links HTML
-                    contestLinksHTML.push(`<a href="/contest/${constest._id}">${contest.text}</a>`);
+                    contestLinksHTML.push(`<a href="/contest/${contest._id}">${contest.text}</a>`);
                 }
             });
 
