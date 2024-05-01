@@ -93,13 +93,23 @@ exports.realm_search = async (req, res) => {
 
             // Construct dropdown HTML
             const dropdownHTML = `
-                <div class="dropdown">
-                    <button class="dropdown-btn" >${realm.name}</button>
+                <div class="dropdown" style="overflow: hidden;>
+                    <div class="dropdown-btn" style="display:flex; align-items: end; justify-content: space-between; ">
+                    ${realm.name} 
+                    
+
+                    <button id="${realm.name}" style="33px #303030; --accent: fuchsia; font-weight: bold; letter-spacing: 0.1em; border: none; border-radius: 1.1em; background-color: #212121; cursor: pointer; 
+                                                color: white; padding: 1em 2em; transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s, letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
+                                                box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; " onclick="joinRealm('${realm._id}')">JOIN</button>
+                    </div>
+                    
+                    
+                    
                     <div class="dropdown-content">
                         ${contestLinksHTML.join('')}
                     </div>
                 </div>
-                <button id="${realm.name}" style="width : 100px, height : 50px" onclick="joinRealm('${realm._id}')">JOIN REALM</button>
+                
             `;
 
             // Add dropdown HTML to array
