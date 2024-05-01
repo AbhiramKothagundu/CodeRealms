@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use('/css', express.static(__dirname + '/public/css'));
 app.use('/js', express.static(__dirname + '/public/js'));
-app.use('/imgs', express.static(__dirname + '/public/imgs'));
+app.use('/images', express.static(__dirname + '/public/images'));
 app.use('/videos', express.static(__dirname + '/public/videos'));
 
 app.use(bodyParser.json());
