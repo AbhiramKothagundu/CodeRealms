@@ -70,6 +70,32 @@ updateQuestionInDown1('hard');
 
 // JavaScript
 // Bookmarking
+document.querySelectorAll('.iconFire').forEach(icon => {
+    icon.addEventListener('click', async () => {
+        const questionCard = icon.closest('.questionCard');
+        const questionText = questionCard.querySelector('.QuestionDown .Down1 p').innerText;
+        const difficulty = questionCard.dataset.difficulty;
+        const bookmarkContent = document.querySelector('.bookmarkContent');
+
+        // Check if the question is already bookmarked
+        const existingBookmark = [...bookmarkContent.querySelectorAll('.bookmarkedQuestion')]
+            .find(bookmark => bookmark.dataset.question === questionText);
+
+        if (existingBookmark) {
+            // If already bookmarked, remove from display and delete from database
+            bookmarkContent.removeChild(existingBookmark);
+            await deleteBookmarkFromDatabase(questionText);
+            console.log('Bookmark removed successfully');
+        } else {
+            // If not bookmarked, add to display and database
+            const bookmarkedQuestionDiv = createBookmarkElement(questionText, difficulty);
+            bookmarkContent.appendChild(bookmarkedQuestionDiv);
+            await addBookmarkToDatabase(questionText, difficulty);
+            console.log('Bookmark added successfully');
+        }
+    });
+});
+
 async function addBookmarkToDatabase(questionText, difficulty) {
     // Send a POST request to the server to add the bookmark
     try {
@@ -88,39 +114,15 @@ async function addBookmarkToDatabase(questionText, difficulty) {
     }
 }
 
-// Remove existing event listeners before adding new ones
-document.querySelectorAll('.iconFire').forEach(icon => {
-    icon.removeEventListener('click', bookmarkHandler); // Remove existing event listener
-    icon.addEventListener('click', bookmarkHandler); // Add event listener
-});
-
-// Define the bookmarkHandler function
-async function bookmarkHandler() {
-    const icon = this; // 'this' refers to the clicked icon
-    const questionCard = icon.closest('.questionCard');
-    const questionText = questionCard.querySelector('.QuestionDown .Down1 p').innerText;
-    const bookmarkContent = document.querySelector('.bookmarkContent');
-
-    // Check if the question is already bookmarked
-    const existingBookmark = [...bookmarkContent.querySelectorAll('.bookmarkedQuestion')]
-        .find(bookmark => bookmark.dataset.question === questionText);
-
-    if (existingBookmark) {
-        // If already bookmarked, remove from display and delete from database
-        const bookmarkId = existingBookmark.dataset.id;
-        bookmarkContent.removeChild(existingBookmark);
-        await deleteBookmarkFromDatabase(bookmarkId);
-        console.log('Bookmark removed successfully');
-    } else {
-        console.error('Bookmark not found for removal');
-    }
-}
-
-async function deleteBookmarkFromDatabase(bookmarkId) {
+async function deleteBookmarkFromDatabase(questionText) {
     // Send a DELETE request to the server to remove the bookmark
     try {
-        const response = await fetch(`/bookmark/${bookmarkId}`, {
-            method: 'DELETE'
+        const response = await fetch('/bookmark', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ questionText })
         });
         if (!response.ok) {
             throw new Error('Failed to delete bookmark');

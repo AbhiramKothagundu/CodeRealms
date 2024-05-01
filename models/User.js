@@ -12,6 +12,8 @@ const Realm = require('./realm');
 const Contest = require('./contest');
 const Problem = require('./problem');
 
+
+
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -28,72 +30,65 @@ const UserSchema = new mongoose.Schema({
     },
     address: {
         type: String,
-       
-    },
-    lastLogin: {
-        type: Date
-    },
-    dailyStreak: {
-        type: Number,
-        default: 0
+
     },
     phoneNumber: {
         type: String,
-        
+
     },
     instagramLink: {
         type: String,
-        
+
     },
     linkedinLink: {
         type: String,
-      
+
     },
     twitterLink: {
         type: String,
-       
+
     },
     name: {
         type: String,
-       
+
     },
     type: {
         type: String,
-       
+
     },
     college: {
         type: String,
-       
-    },
-    avatarPath: {
-        type: String,
-        default: '/imgs/avatars/memo_3.png' // Default avatar path
+
     },
     aboutme: {
         bio: {
             type: String,
-           
+
         },
         experience: [{
             type: String,
-           
+
         }],
         education: [{
             type: String,
-           
+
         }]
     },
     skills: [{
         title: {
             type: String,
-           
+
         },
         description: {
             type: String,
-           
+
         }
     }],
-    realmIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Realm' }],
+    realmIds: [
+        {
+            type: mongoose.Schema.Types.ObjectId, ref: 'Realm'
+        }
+    ],
     arrProblems: [
         {
             type: mongoose.Schema.Types.ObjectId, ref: 'Problem'
@@ -104,47 +99,6 @@ const UserSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId, ref: 'Contest' 
         }
     ],
-
-    weekdata: {
-        monday: [Number],
-        tuesday: [Number],
-        wednesday: [Number],
-        thursday: [Number],
-        friday: [Number],
-        saturday: [Number],
-        sunday: [Number]
-    },
-    
-   monthdata:{
-        january: [Number],
-        february: [Number],
-        march: [Number],
-        april: [Number],
-        may: [Number],
-        june: [Number],
-        july: [Number],
-        august: [Number],
-        september: [Number],
-        october: [Number],
-        november: [Number],
-        december: [Number]
-    },
-
-    contestmonthdata:{
-        january: [Number],
-        february: [Number],
-        march: [Number],
-        april: [Number],
-        may: [Number],
-        june: [Number],
-        july: [Number],
-        august: [Number],
-        september: [Number],
-        october: [Number],
-        november: [Number],
-        december: [Number]
-    },
-    badges: [{ kind: String, label: String, image: String }],
     role : {
         type : String, enum:['user','moderator','superuser'], default : 'user'
     },
@@ -154,6 +108,8 @@ const UserSchema = new mongoose.Schema({
         }
     ],
     banned: { type: Boolean, default: false }
+
+
 });
 
 
