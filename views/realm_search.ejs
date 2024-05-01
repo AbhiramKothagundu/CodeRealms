@@ -1,6 +1,6 @@
 <head>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="/css/home_style.css">
+    <link rel="stylesheet" href="/css/searchStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -8,8 +8,8 @@
 
 <body>
 
-    <div style="position: fixed; z-index: -1;">
-        <video src="/videos/background.mp4" muted autoplay loop style=""></video>
+    <div class="overallQ" style="position: fixed; z-index: -1;">
+        <video src="/videos/background.mp4" autoplay muted loop></video>
     </div>
 
     <div>
@@ -112,14 +112,14 @@
     <div class="main_page_Layout">
 
         <div class="dropdown-container">
-
-
-            <h1>You have Searched For :</h1>
-            <%= searchTerm %>
+            
+            <div class="searchForText">
+                <h1>Results for <span><%= searchTerm %></span>:</h1>
+            </div>
 
 
                 <div class="cardHeader">
-                    <div class="cardTitle">$realme_dashboard</div>
+                    <div class="cardTitle">$realme_search</div>
 
                     <div class="cardControls">
                         <div class="Control redControl"></div>
