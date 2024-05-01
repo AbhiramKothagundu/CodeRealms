@@ -308,11 +308,6 @@ exports.deleteBookmark = async (req, res) => {
     try {
         const { bookmarkId } = req.body;
 
-        // Check if bookmarkId is provided
-        if (!bookmarkId) {
-            return res.status(400).json({ error: 'Bookmark ID is required' });
-        }
-
         // Find the bookmark to delete
         const bookmark = await Bookmark.findById(bookmarkId);
         if (!bookmark) {
@@ -326,7 +321,6 @@ exports.deleteBookmark = async (req, res) => {
             { new: true }
         );
 
-        // Check if user is found and bookmark reference is removed
         if (!user) {
             return res.status(404).json({ message: 'User not found or bookmark reference not present' });
         }
@@ -334,7 +328,6 @@ exports.deleteBookmark = async (req, res) => {
         // Delete the bookmark
         await bookmark.remove();
 
-        // Send success response
         res.status(200).json({ message: 'Bookmark removed successfully' });
     } catch (error) {
         console.error('Error removing bookmark', error);
@@ -385,3 +378,35 @@ exports.getBookmark = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+
+// Controller function to fetch weekdata of all users
+exports.getAllWeekData = async (req, res) => {
+    try {
+        const users = await User.find({}, { username: 1, weekdata: 1 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// Controller function to fetch monthdata of all users
+exports.getAllMonthData = async (req, res) => {
+    try {
+        const users = await User.find({}, { username: 1, monthdata: 1 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+exports.getContestMonthData = async (req, res) => {
+    try {
+        const users = await User.find({}, { username: 1, monthdata: 1 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+

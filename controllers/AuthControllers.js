@@ -49,6 +49,9 @@ exports.signin = async (req, res) => {
 
         if (!isPasswordValid) {
             return res.status(401).json({ error: 'Invalid username or password' });
+        }else {
+            req.session.userID = user._id; // Set session for user
+            user.lastLogin = new Date(); // Update last login date
         }
 
         // Generate JWT token

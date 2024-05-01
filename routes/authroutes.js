@@ -29,16 +29,19 @@ router.get("/", (req, res) => {
 
 // Route to render login.ejs
 router.get("/login", (req, res) => {
-    res.render('login');
+    res.render('login', { title: "Login", layout: './layouts/authLayout' });
+    
 });
 // Route to render signin.ejs
 router.get("/signin", (req, res) => {
-    res.render('signin');
+    res.render('signin', { title: "Sign In", layout: './layouts/authLayout' });
+
 });
 
 // Route to render signup.ejs
 router.get("/signup", (req, res) => {
-    res.render('signup');
+    res.render('signup', { title: "Sign Up", layout: './layouts/authLayout' });
+    
 });
 
 
