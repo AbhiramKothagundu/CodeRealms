@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const idLabel = document.createElement('label');
         idLabel.textContent = 'Question ID:';
         const idInput = document.createElement('input');
-        idInput.setAttribute('type', 'text');
+        idInput.setAttribute('type', 'number');
         idInput.setAttribute('placeholder', 'Enter question ID');
         idInput.setAttribute('required', '');
         idInput.setAttribute('name', 'questionId');
