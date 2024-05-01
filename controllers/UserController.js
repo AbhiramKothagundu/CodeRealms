@@ -93,7 +93,7 @@ exports.realm_search = async (req, res) => {
 
             // Construct dropdown HTML
             const dropdownHTML = `
-                <div class="dropdown" style="overflow: hidden;>
+                <div class="dropdown">
                     <div class="dropdown-btn" style="display:flex; align-items: end; justify-content: space-between; ">
                     ${realm.name} 
                     
@@ -102,8 +102,6 @@ exports.realm_search = async (req, res) => {
                                                 color: white; padding: 1em 2em; transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s, letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
                                                 box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; " onclick="joinRealm('${realm._id}')">JOIN</button>
                     </div>
-                    
-                    
                     
                     <div class="dropdown-content">
                         ${contestLinksHTML.join('')}
