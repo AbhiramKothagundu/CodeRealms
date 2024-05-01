@@ -271,14 +271,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add event listener to form submission
         problemForm.addEventListener('submit', function (event) {
             event.preventDefault();
-
+    
             // Retrieve problem details from the form
             const formData = new FormData(problemForm);
             const problemDetails = {};
             for (let [key, value] of formData.entries()) {
                 problemDetails[key] = value;
             }
-
+    
             // Send problem data to the server to create a new problem
             fetch('/create-problem', {
                 method: 'POST',
@@ -289,7 +289,6 @@ document.addEventListener('DOMContentLoaded', function () {
             })
                 .then(response => {
                     if (response.ok) {
-
                         return response.json();
                     } else {
                         throw new Error('Failed to create problem');
@@ -298,7 +297,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(createdProblem => {
                     // Update contest and realm with the newly created problem's ID
                     updateContestAndRealm(createdProblem, realmName, contestName);
-
+                    // Reload the page after successfully creating the problem
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.error(error); // Handle error

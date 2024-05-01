@@ -168,15 +168,17 @@
                         <span>B</span>OOKMARKS
                     </h3>
                 </div>
-                <div class="bookmarkContent">
-                    <% bookmarks.forEach(bookmark => { %>
-                        <div class="bookmarkedQuestion">
-                            <span class="level" style="color: <%= getDifficultyColor(bookmark.difficultyColor) %>">LEVEL <%= bookmark.difficulty.toUpperCase() %></span>
-                            <%= bookmark.questionTitle %>
-                            <button onclick="removeBookmark('<%= bookmark.id %>')">Remove</button>
-                        </div>
-                    <% }); %>
-                </div>
+              <!-- Inside your EJS template -->
+<div class="bookmarkContent">
+    <% bookmarks.forEach(bookmark => { %>
+        <div class="bookmarkedQuestion">
+            <span class="level" style="color: <%= getDifficultyColor(bookmark.difficultyColor) %>">LEVEL <%= bookmark.difficulty.toUpperCase() %></span>
+            <%= bookmark.questionTitle %>
+            <button class="removeBookmarkBtn" data-bookmark-id="<%= bookmark.id %>">Remove</button>
+        </div>
+    <% }); %>
+</div>
+
                 
                 
 
@@ -492,6 +494,38 @@ searchInput.addEventListener('keypress', function (event) {
     }
 });
 
+// script.js
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const removeButtons = document.querySelectorAll('.removeBookmarkBtn');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default button behavior
+            const bookmarkId = button.dataset.bookmarkId;
+            removeBookmark(bookmarkId);
+        });
+    });
+
+    function removeBookmark(bookmarkId) {
+        fetch('/bookmark', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ bookmarkId }),
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload(); // Refresh the page after successful deletion
+            } else {
+                console.error('Failed to delete bookmark');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+});
 
 
     </script>
