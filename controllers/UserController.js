@@ -386,3 +386,35 @@ exports.getBookmark = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
+
+
+// Controller function to fetch weekdata of all users
+exports.getAllWeekData = async (req, res) => {
+    try {
+        const users = await User.find({}, { username: 1, weekdata: 1 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+// Controller function to fetch monthdata of all users
+exports.getAllMonthData = async (req, res) => {
+    try {
+        const users = await User.find({}, { username: 1, monthdata: 1 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+exports.getContestMonthData = async (req, res) => {
+    try {
+        const users = await User.find({}, { username: 1, monthdata: 1 });
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
+

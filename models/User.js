@@ -59,6 +59,12 @@ const UserSchema = new mongoose.Schema({
     college: {
         type: String,
 
+       
+    },
+    avatarPath: {
+        type: String,
+        default: '/images/avatars/memo_3.png' // Default avatar path
+
     },
     aboutme: {
         bio: {
