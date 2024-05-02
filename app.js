@@ -32,6 +32,8 @@ app.use('/css', express.static(__dirname + '/public/css'));
 app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/imgs', express.static(__dirname + '/public/imgs'));
 app.use('/videos', express.static(__dirname + '/public/videos'));
+app.use(express.static('public'));
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -113,7 +115,6 @@ app.get('/logout', (req, res) => {
     // Redirect to the home page or any other page you prefer
     res.redirect('/');
 });
-
 
 
 
