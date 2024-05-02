@@ -13,21 +13,21 @@
 
 /*
 const badgesData = [
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' }, { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' },
-    { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' },
-    { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' }, { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' },
+    { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' },
+    { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
     // Add more badges with image paths as needed
 ];
 */
