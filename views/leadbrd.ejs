@@ -4,110 +4,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard</title>
+    <title><%- title %></title>
+    <link rel="stylesheet" href="css/stylessgn.css">
+    <link rel="stylesheet" href="css/style_footer.css">
+
+    <!-- Montserrat Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylessgn-sts.css">
+    <link rel="stylesheet" href="css/style_contact.css">
+    <link rel="stylesheet" href="css/style_ldrd.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
 </head>
 
 <body>
-    <main class="table" id="leaderboard_table">
-        <section class="table__header">
-            <h1>Coding Competition Leaderboard</h1>
-            <div class="input-group">
-                <input type="search" placeholder="Search Data...">
-                <img src="images/search.png" alt="">
+
+    <div class="navBar">
+        <video src="/images/2.mp4" muted autoplay loop playsinline style="display: fixed; size: 1px;"></video> 
+        
+
+        <div class="logo">
+            <img src="/images/cserlm.png" class="logoMain">
+            <h2>PROFILE</h2>
+        </div>
+        
+        <div class="all_icons">
+            <div class="panelIcon"><a href="/profile"><img src="/images/greenProfile.png"></a></a></div>
+            <div class="panel2Icon"><a href="/home"><img src="/images/Home.png"></a></div>
+            <div class="panel3Icon"><a href="/questionbank"><img src="/images/codeBank.png"></a></div>
+            
+        </div>
+            
+        <div class="searchAndExit">
+            <div class="searchBar">
+                <div class="searchInput"><input type="text" placeholder="Search" class="searchi" id="realme_id"></div>
+                <!-- <div class="searchImage"><ion-icon name="search-outline" class="search" type="button" value="Join" id="create_realme"></ion-icon></div> -->
+                <input type="button" class="searchbit" style="display: flex; background-color: transparent; border-style: none;" value="🔍" id="create_realme">
+    
+            </div> 
+            <div class="Exit">
+                
+                <img src="/images/user_profile.png" name="exit-outline" class="exitIcon" id="exitIcon" onclick="wrong" ></ion-icon>
+                <div class="profileOptions">
+                    <ul>
+                        <li><a href="#">Logout</a></li>
+                         <li><a href="#">Settings</a></li>
+                    </ul>
+                </div>
             </div>
-        </section>
-        <section class="table__body">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Avatar</th>
-                        <th>Username</th>
-                        <th>Total Problems Solved</th>
-                        <th>Contests Attended</th>
-                        <th>Total Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% users.forEach((user, index)=> { %>
+          
+        </div>
+            
+          
+    </div>
+
+   
+
+    <div class="profile-container" id="profile">
+        <div id="mySidenav" class="sidenav">
+            <a href="/" id="homeLink"><i class="fa-solid fa-trophy"></i></a>
+            <a href="/stats" id="statsLink"><i class="fa-solid fa-chart-line"></i></a>
+            <a href="/leaderboard" id="leadbrdLink"><i class="fa-solid fa-ranking-star"></i></a>
+            <a href="/contactus" id="contatusLink"><i class="fa-solid fa-user"></i></a>
+        </div>
+
+
+        <main class="table" id="leaderboard_table">
+            <section class="table__header">
+                <h1>Coding Competition Leaderboard</h1>
+                <div class="input-group">
+                    <input type="search" placeholder="Search Data...">
+                    <img src="images/search.png" alt="">
+                </div>
+            </section>
+            <section class="table__body">
+                <table>
+                    <thead>
                         <tr>
-                            <td>
-                                <%= index + 1 %>
-                            </td>
-                            <td><img src="<%= user.avatarPath %>" alt="Avatar"></td>
-                            <td>
-                                <%= user.username %>
-                            </td>
-                            <td>
-                                <%= helpers.getTotalProblemsSolved(user.monthdata) %>
-                            </td> <!-- Note the usage of helpers.getTotalProblemsSolved -->
-                            <td>
-                                <%= helpers.getTotalProblemsSolved(user.contestmonthdata) %>
-                            </td>
-                            <td>
-                                <%= helpers.getTotalPoints(user) %>
-                            </td> <!-- Note the usage of helpers.getTotalPoints -->
+                            <th>Rank</th>
+                            <th>Avatar</th>
+                            <th>Username</th>
+                            <th>Total Problems Solved</th>
+                            <th>Contests Attended</th>
+                            <th>Total Points</th>
                         </tr>
-                        <% }); %>
-                </tbody>
-            </table>
-        </section>
-    </main>
-
-    <!-- Script to handle search and sorting -->
-    <script>
-        const search = document.querySelector('.input-group input'),
-            table_rows = document.querySelectorAll('tbody tr'),
-            table_headings = document.querySelectorAll('thead th');
-
-        // 1. Searching for specific data of HTML table
-        search.addEventListener('input', searchTable);
-
-        function searchTable() {
-            table_rows.forEach((row, i) => {
-                let table_data = row.textContent.toLowerCase(),
-                    search_data = search.value.toLowerCase();
-
-                row.classList.toggle('hide', table_data.indexOf(search_data) < 0);
-                row.style.setProperty('--delay', i / 25 + 's');
-            })
-
-            document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
-                visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
-            });
-        }
-
-        // 2. Sorting | Ordering data of HTML table
-
-        table_headings.forEach((head, i) => {
-            let sort_asc = true;
-            head.onclick = () => {
-                table_headings.forEach(head => head.classList.remove('active'));
-                head.classList.add('active');
-
-                document.querySelectorAll('td').forEach(td => td.classList.remove('active'));
-                table_rows.forEach(row => {
-                    row.querySelectorAll('td')[i].classList.add('active');
+                    </thead>
+                    <tbody>
+                        <% users.forEach((user, index)=> { %>
+                            <tr>
+                                <td>
+                                    <%= index + 1 %>
+                                </td>
+                                <td><img src="<%= user.avatarPath %>" alt="Avatar"></td>
+                                <td>
+                                    <%= user.username %>
+                                </td>
+                                <td>
+                                    <%= helpers.getTotalProblemsSolved(user.monthdata) %>
+                                </td> <!-- Note the usage of helpers.getTotalProblemsSolved -->
+                                <td>
+                                    <%= helpers.getTotalProblemsSolved(user.contestmonthdata) %>
+                                </td>
+                                <td>
+                                    <%= helpers.getTotalPoints(user) %>
+                                </td> <!-- Note the usage of helpers.getTotalPoints -->
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    
+        <!-- Script to handle search and sorting -->
+        <script>
+            const search = document.querySelector('.input-group input'),
+                table_rows = document.querySelectorAll('tbody tr'),
+                table_headings = document.querySelectorAll('thead th');
+    
+            // 1. Searching for specific data of HTML table
+            search.addEventListener('input', searchTable);
+    
+            function searchTable() {
+                table_rows.forEach((row, i) => {
+                    let table_data = row.textContent.toLowerCase(),
+                        search_data = search.value.toLowerCase();
+    
+                    row.classList.toggle('hide', table_data.indexOf(search_data) < 0);
+                    row.style.setProperty('--delay', i / 25 + 's');
                 })
-
-                head.classList.toggle('asc', sort_asc);
-                sort_asc = head.classList.contains('asc') ? false : true;
-
-                sortTable(i, sort_asc);
+    
+                document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
+                    visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
+                });
             }
-        })
-
-
-        function sortTable(column, sort_asc) {
-            [...table_rows].sort((a, b) => {
-                let first_row = a.querySelectorAll('td')[column].textContent.toLowerCase(),
-                    second_row = b.querySelectorAll('td')[column].textContent.toLowerCase();
-
-                return sort_asc ? (first_row < second_row ? 1 : -1) : (first_row < second_row ? -1 : 1);
+    
+            // 2. Sorting | Ordering data of HTML table
+    
+            table_headings.forEach((head, i) => {
+                let sort_asc = true;
+                head.onclick = () => {
+                    table_headings.forEach(head => head.classList.remove('active'));
+                    head.classList.add('active');
+    
+                    document.querySelectorAll('td').forEach(td => td.classList.remove('active'));
+                    table_rows.forEach(row => {
+                        row.querySelectorAll('td')[i].classList.add('active');
+                    })
+    
+                    head.classList.toggle('asc', sort_asc);
+                    sort_asc = head.classList.contains('asc') ? false : true;
+    
+                    sortTable(i, sort_asc);
+                }
             })
-                .map(sorted_row => document.querySelector('tbody').appendChild(sorted_row));
-        }
-    </script>
+    
+    
+            function sortTable(column, sort_asc) {
+                [...table_rows].sort((a, b) => {
+                    let first_row = a.querySelectorAll('td')[column].textContent.toLowerCase(),
+                        second_row = b.querySelectorAll('td')[column].textContent.toLowerCase();
+    
+                    return sort_asc ? (first_row < second_row ? 1 : -1) : (first_row < second_row ? -1 : 1);
+                })
+                    .map(sorted_row => document.querySelector('tbody').appendChild(sorted_row));
+            }
+        </script>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/995fc86ac0.js" crossorigin="anonymous"></script>
+
+    
+
+    <!-- footer section start -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+
+                    <div  class="footer-about">
+                        <img style="height: 220px; width: 380PX; margin-top: -50px;" src="/images/cserlm.png" alt="csrelm">
+                        <p style="margin-top: -20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. since the 1500s,
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="useful-link">
+                        <h2>Useful Links</h2>
+                        <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                        <div class="use-links">
+                            <li><a href="index.html"><i class="fa-solid fa-angles-right"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
+                            <li><a href="gallery.html"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
+                            <li><a href="contact.html"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="social-links">
+                        <h2>Follow Us</h2>
+                        <img src="./assets/images/about/home_line.png" alt="">
+                        <div class="social-icons">
+                            <li><a href=""><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                            <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                            <li><a href=""><i class="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-3">
+                    <div class="address">
+                        <h2>Address</h2>
+                        <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                        <div class="address-links">
+                            <li class="address1"><i class="fa-solid fa-location-dot"></i> iiit sricity
+                                sricity 
+                                andhra pradesh 517646</li>
+                            <li><a href=""><i class="fa-solid fa-phone"></i> +91 9938584270</a></li>
+                            <li><a href=""><i class="fa-solid fa-envelope"></i> coderealms@iiits.in</a></li>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- footer section end -->
+    <!-- footer copy right section start -->
+    <section id="copy-right">
+        <div class="copy-right-sec"><i class="fa-solid fa-copyright"></i>
+            
+            code realms a project by <a href="#">team zenith</a>
+
+
+        </div>
+
+    </section>
+    <!-- footer copy right section end -->
 </body>
 
 </html>
