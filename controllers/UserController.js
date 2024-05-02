@@ -128,7 +128,7 @@ exports.problem_search = async (req, res) => {
         const searchTerm = req.query.q;
         console.log("Search Term: ", searchTerm);
         const regex = new RegExp(`^${searchTerm}`, 'i');
-console.log("Regex: ", regex);
+        console.log("Regex: ", regex);
         // Fetch problems from the database where the title matches the regular expression
         const problems = await Problem.find({ QuestionTitle: { $regex: regex } });
 
@@ -211,7 +211,30 @@ exports.join_realm = async (req, res) => {
 }
 
 
-// Route to render home.ejs
+function getMonthName(month) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[month];
+}
+
+function getDate(date) {
+    // Ensure that 'date' is a valid Date object
+    if (date instanceof Date && !isNaN(date)) {
+        return date.getDate(); // Return the day of the month
+    } else {
+        return ''; // Return an empty string if 'date' is not valid
+    }
+}
+
+
+function getMonth(date) {
+    // Ensure that 'date' is a valid Date object
+    if (date instanceof Date && !isNaN(date)) {
+        return getMonthName(date.getMonth()); // Return the name of the month
+    } else {
+        return ''; // Return an empty string if 'date' is not valid
+    }
+}
+
 exports.home = async (req, res) => {
     try {
         const token = req.cookies.userjwt;
@@ -245,18 +268,30 @@ exports.home = async (req, res) => {
         // Array to store dropdown HTML
         const dropdownsHTML = [];
 
+        // Array to store all contest IDs
+        const allContestIds = [];
+
         // Iterate over realms
         for (const realm of realms) {
-            // Array to store contest links HTML
-            const contestLinksHTML = [];
+            // Array to store contest data
+            const contests = [];
 
             // Retrieve contest data based on contest IDs in the realm
             const contestPromises = realm.arrContests.map(async contestId => {
+                allContestIds.push(contestId); // Add contest ID to allContestIds array
+
                 // Retrieve contest data based on contest ID
                 const contest = await Contest.findById(contestId);
-                if (contest) {
-                    // Add contest name to contest links HTML
-                    contestLinksHTML.push(`<a href="/contest/${contest._id}">${contest.text}</a>`);
+                if (contest && contest.startdate) { // Add null check for startdate
+                    // Add contest details to the contests array
+                    contests.push({
+                        id: contest._id,
+                        text: contest.text,
+                        startdate: parseInt(getDate(contest.startdate)),
+                        enddate: contest.enddate,
+                        startmonth: getMonth(contest.startdate)
+
+                    });
                 }
             });
 
@@ -268,7 +303,7 @@ exports.home = async (req, res) => {
                 <div class="dropdown">
                     <button class="dropdown-btn">${realm.name}</button>
                     <div class="dropdown-content">
-                        ${contestLinksHTML.join('')}
+                        ${contests.map(contest => `<a href="/contest/${contest.id}">${contest.text}</a>`).join('')}
                     </div>
                 </div>
             `;
@@ -277,13 +312,15 @@ exports.home = async (req, res) => {
             dropdownsHTML.push(dropdownHTML);
         }
 
-        res.render('home', { username, dropdownsHTML });
+        // Retrieve all contests using the contest IDs
+        const arrContests = await Contest.find({ _id: { $in: allContestIds } });
+
+        res.render('home', { username, dropdownsHTML, arrContests });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ success: false, message: 'Internal server error' });
     }
 }
-
 
 
 exports.postBookmark = async (req, res) => {
@@ -364,7 +401,7 @@ exports.deleteBookmark = async (req, res) => {
 
 exports.getBookmark = async (req, res) => {
     try {
-       
+
         const token = req.cookies.userjwt;
 
         if (!token) {
