@@ -1,5 +1,4 @@
- // Get the current page URL
- var currentPage = window.location.pathname;
+var currentPage = window.location.pathname;
 
  // Update the class of the corresponding link based on the current page
  var links = document.querySelectorAll('#mySidenav a');
@@ -13,21 +12,21 @@
 
 /*
 const badgesData = [
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' }, { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' },
-    { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'participation', label: 'Participation Badge', image: './imgs/bdg1.png' },
-    { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position2', label: '2nd Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position1', label: '1st Position Badge', image: './imgs/bdg1.png' },
-    { type: 'position3', label: '3rd Position Badge', image: './imgs/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' }, { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' },
+    { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
+    { type: 'participation', label: 'Participation Badge', image: './images/bdg1.png' },
+    { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
+    { type: 'position2', label: '2nd Position Badge', image: './images/bdg1.png' },
+    { type: 'position1', label: '1st Position Badge', image: './images/bdg1.png' },
+    { type: 'position3', label: '3rd Position Badge', image: './images/bdg1.png' },
     // Add more badges with image paths as needed
 ];
 */
@@ -35,7 +34,10 @@ const badgesData = [
 const badgesContainer = document.querySelector('.badges');
 
 async function displayBadges(filter) {
-    const badgesData = await fetch('http://localhost:3030/badges')
+    const PORT = 8000;
+    const SERVER_URL = `http://localhost:${PORT}`
+
+    const badgesData = await fetch(`${SERVER_URL}/badges`)
         .then(data => data.json())
         .then(data => data.badges);
     console.log(badgesData);

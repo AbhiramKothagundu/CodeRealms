@@ -1,82 +1,245 @@
-<div class="grid-container">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title %></title>
+    <link rel="stylesheet" href="css/stylessgn.css">
+    <link rel="stylesheet" href="css/style_footer.css">
 
-  <main class="main-container">
-    <div class="main-title">
-      <h2>DASHBOARD</h2>
+    <!-- Montserrat Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/stylessgn-sts.css">
+    <link rel="stylesheet" href="css/style_contact.css">
+    <link rel="stylesheet" href="css/style_ldrd.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    
+</head>
+
+<body>
+
+    <div class="navBar">
+        <video src="/images/2.mp4" muted autoplay loop playsinline style="display: fixed; size: 1px;"></video> 
+        
+
+        <div class="logo">
+            <img src="/images/cserlm.png" class="logoMain">
+            <h2>PROFILE</h2>
+        </div>
+        
+        <div class="all_icons">
+            <div class="panelIcon"><a href="/profile"><img src="/images/greenProfile.png"></a></a></div>
+            <div class="panel2Icon"><a href="/home"><img src="/images/Home.png"></a></div>
+            <div class="panel3Icon"><a href="/questionbank"><img src="/images/codeBank.png"></a></div>
+            
+        </div>
+            
+        <div class="searchAndExit">
+            <div class="searchBar">
+                <div class="searchInput"><input type="text" placeholder="Search" class="searchi" id="realme_id"></div>
+                <!-- <div class="searchImage"><ion-icon name="search-outline" class="search" type="button" value="Join" id="create_realme"></ion-icon></div> -->
+                <input type="button" class="searchbit" style="display: flex; background-color: transparent; border-style: none;" value="🔍" id="create_realme">
+    
+            </div> 
+            <div class="Exit">
+                
+                <img src="/images/user_profile.png" name="exit-outline" class="exitIcon" id="exitIcon" onclick="wrong" ></ion-icon>
+                <div class="profileOptions">
+                    <ul>
+                        <li><a href="#">Logout</a></li>
+                         <li><a href="#">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+          
+        </div>
+            
+          
     </div>
 
-    <div class="main-cards">
+   
 
-      <div class="card">
-        <div class="card-inner">
-          <h3>ACTIVE DAYS</h3>
-          <span class="material-icons-outlined">inventory_2</span>
+    <div class="profile-container" id="profile">
+        <div id="mySidenav" class="sidenav">
+            <a href="/" id="homeLink"><i class="fa-solid fa-trophy"></i></a>
+            <a href="/stats" id="statsLink"><i class="fa-solid fa-chart-line"></i></a>
+            <a href="/leaderboard" id="leadbrdLink"><i class="fa-solid fa-ranking-star"></i></a>
+            <a href="/contactus" id="contatusLink"><i class="fa-solid fa-user"></i></a>
         </div>
-        <h1>249</h1>
-      </div>
 
-      <div class="card">
-        <div class="card-inner">
-          <h3>MOST LANGUAGES USED</h3>
 
+
+        <div class="grid-container">
+
+
+          <main class="main-container">
+            <div class="main-title">
+              <h2>DASHBOARD</h2>
+            </div>
+        
+            <div class="main-cards">
+        
+              <div class="card">
+                <div class="card-inner">
+                  <h3>ACTIVE DAYS</h3>
+                  <span class="material-icons-outlined">inventory_2</span>
+                </div>
+                <h1>249</h1>
+              </div>
+        
+              <div class="card">
+                <div class="card-inner">
+                  <h3>MOST LANGUAGES USED</h3>
+        
+                </div>
+                <ul>
+                  <li>python</li>
+                  <li>html</li>
+                  <li>javascript</li>
+                </ul>
+        
+              </div>
+        
+         
+        
+              <div class="card">
+                <div class="card-inner">
+                  <h3>ATTENDED CONTESTS</h3>
+                  <span class="material-icons-outlined">groups</span>
+                </div>
+                <h1></h1>
+              </div>
+        
+              <div class="card">
+                <div class="card-inner">
+                  <h3>DAILY STREAK</h3>
+                  <span class="material-icons-outlined">notification_important</span>
+                </div>
+                <h1><%= user.dailyStreak %></h1>
+              </div>
+        
+            </div>
+        
+            <div class="charts">
+        
+              <div class="charts-card">
+                <h2 class="chart-title">DAILY SOLVES</h2>
+        
+                <div id="bar-chart"></div>
+              </div>
+        
+              <div class="charts-card">
+                <h2 class="chart-title">MONTHLY SOLVES</h2>
+                <div id="bar-chart1"></div>
+              </div>
+        
+              <div class="charts-card">
+                <h2 class="chart-title">MONTHLY CONTEST SOLVES</h2>
+                <div id="bar-chart2"></div>
+              </div>
+        
+            </div>
+          </main>
+          <!-- End Main -->
+        
         </div>
-        <ul>
-          <li>python</li>
-          <li>html</li>
-          <li>javascript</li>
-        </ul>
-
-      </div>
-
- 
-
-      <div class="card">
-        <div class="card-inner">
-          <h3>ATTENDED CONTESTS</h3>
-          <span class="material-icons-outlined">groups</span>
-        </div>
-        <h1></h1>
-      </div>
-
-      <div class="card">
-        <div class="card-inner">
-          <h3>DAILY STREAK</h3>
-          <span class="material-icons-outlined">notification_important</span>
-        </div>
-        <h1><%= user.dailyStreak %></h1>
-      </div>
-
+        
+        
+        
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+        
+        <script src="js/scripts-sts.js"></script>
+        
+        
     </div>
 
-    <div class="charts">
+    <script src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/995fc86ac0.js" crossorigin="anonymous"></script>
 
-      <div class="charts-card">
-        <h2 class="chart-title">DAILY SOLVES</h2>
+    
 
-        <div id="bar-chart"></div>
-      </div>
+    <!-- footer section start -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
 
-      <div class="charts-card">
-        <h2 class="chart-title">MONTHLY SOLVES</h2>
-        <div id="bar-chart1"></div>
-      </div>
+                    <div  class="footer-about">
+                        <img style="height: 220px; width: 380PX; margin-top: -50px;" src="/images/cserlm.png" alt="csrelm">
+                        <p style="margin-top: -20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. since the 1500s,
+                        </p>
+                    </div>
 
-      <div class="charts-card">
-        <h2 class="chart-title">MONTHLY CONTEST SOLVES</h2>
-        <div id="bar-chart2"></div>
-      </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="useful-link">
+                        <h2>Useful Links</h2>
+                        <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                        <div class="use-links">
+                            <li><a href="index.html"><i class="fa-solid fa-angles-right"></i> Home</a></li>
+                            <li><a href="about.html"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
+                            <li><a href="gallery.html"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
+                            <li><a href="contact.html"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
+                        </div>
+                    </div>
 
-    </div>
-  </main>
-  <!-- End Main -->
+                </div>
+                <div class="col-md-3">
+                    <div class="social-links">
+                        <h2>Follow Us</h2>
+                        <img src="./assets/images/about/home_line.png" alt="">
+                        <div class="social-icons">
+                            <li><a href=""><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+                            <li><a href=""><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                            <li><a href=""><i class="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
+                        </div>
+                    </div>
 
-</div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="address">
+                        <h2>Address</h2>
+                        <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
+                        <div class="address-links">
+                            <li class="address1"><i class="fa-solid fa-location-dot"></i> iiit sricity
+                                sricity 
+                                andhra pradesh 517646</li>
+                            <li><a href=""><i class="fa-solid fa-phone"></i> +91 9938584270</a></li>
+                            <li><a href=""><i class="fa-solid fa-envelope"></i> coderealms@iiits.in</a></li>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+    <!-- footer section end -->
+    <!-- footer copy right section start -->
+    <section id="copy-right">
+        <div class="copy-right-sec"><i class="fa-solid fa-copyright"></i>
+            
+            code realms a project by <a href="#">team zenith</a>
 
 
+        </div>
 
+    </section>
+    <!-- footer copy right section end -->
+</body>
+
+</html>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
 
 <script src="js/scripts-sts.js"></script>
-

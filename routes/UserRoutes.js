@@ -12,6 +12,7 @@ const UserController = require('../controllers/UserController');
 
 router.get("/home" , UserController.home);
 router.get("/realm_search" , UserController.realm_search);
+router.get("/problem_search" , UserController.problem_search);
 router.post("/join_realm" , UserController.join_realm);
 
 router.get("/bookmark" , UserController.getBookmark);
@@ -58,9 +59,9 @@ router.get('/users/:userId/contestmonthdata', async (req, res) => {
 
 
 
-router.get('/api/user/weekdata', async (req, res) => {
+router.get('/api/user/weekdata', checkAuth, async (req, res) => {
     try {
-      const userId = req.session.userID; // Retrieve userId from session
+      const userId = req.user._id; // Retrieve userId from session
       if (!userId) {
         return res.status(401).json({ error: 'User not authenticated' });
       }
@@ -68,15 +69,15 @@ router.get('/api/user/weekdata', async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user.weekdata); // Send weekdata as response
+      return res.status(200).json(user.weekdata); // Send weekdata as response
     } catch (error) {
       console.error('Error fetching week data:', error.message);
-      res.status(500).json({ error: 'Internal server error' });
+      return res.status(500).json({ error: 'Internal server error' });
     }
   });
 
   // Route to retrieve month data
-router.get('/api/user/monthdata', async (req, res) => {
+router.get('/api/user/monthdata', checkAuth, async (req, res) => {
     try {
       const userId = req.session.userID; // Retrieve userId from session
       if (!userId) {
@@ -86,16 +87,16 @@ router.get('/api/user/monthdata', async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user.monthdata); // Send monthdata as response
+      return res.json(user.monthdata); // Send monthdata as response
     } catch (error) {
       console.error('Error fetching month data:', error.message);
-      res.status(500).json({ error: 'Internal server error' });
+      return res.status(500).json({ error: 'Internal server error' });
     }
   });
 
-  router.get('/api/user/contestmonthdata', async (req, res) => {
+  router.get('/api/user/contestmonthdata', checkAuth, async (req, res) => {
     try {
-      const userId = req.session.userID; // Retrieve userId from session
+      const userId = req.user._id; // Retrieve userId from session
       if (!userId) {
         return res.status(401).json({ error: 'User not authenticated' });
       }
@@ -103,10 +104,10 @@ router.get('/api/user/monthdata', async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      res.json(user.contestmonthdata); // Send monthdata as response
+      return res.json(user.contestmonthdata); // Send monthdata as response
     } catch (error) {
       console.error('Error fetching month data:', error.message);
-      res.status(500).json({ error: 'Internal server error' });
+      return res.status(500).json({ error: 'Internal server error' });
     }
   });
 

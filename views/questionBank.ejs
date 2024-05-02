@@ -43,7 +43,7 @@
 
         <div class="searchAndExit">
             <div class="searchBar">
-                <div class="searchInput"><input type="text" placeholder="Search" class="searchi" id="searchInput"></div>
+                <div class="searchInputProb"><input type="text" placeholder="Search" class="searchi" id="searchInputforProblems"></div>
                 <!-- <div class="searchImage"><ion-icon name="search-outline" class="search" type="button" value="Join" id="create_realme"></ion-icon></div> -->
                 <input type="button" class="searchbit"
                     style="display: flex; background-color: transparent; border-style: none;" value="🔍"
@@ -156,7 +156,7 @@
                         </h4>
                         
                     </div>
-                    <button class="codehere" onclick="redirectToPage('<%= problem.QuestionId %>')"
+                    <button class="codehere" onclick="redirectToPage('<%= username %>', '<%= problem.QuestionId %>')"
                         >
                         CODE HERE!!
                     </button>
@@ -348,7 +348,7 @@
 
                     if (existingBookmark) {
                         // If already bookmarked, remove from display and delete from database
-                        bookmarkContent.removeChild(existingBookmark);
+                        // bookmarkContent.removeChild(existingBookmark);
                         await deleteBookmarkFromDatabase(questionText);
                         console.log('Bookmark removed successfully');
                     } else {
@@ -433,10 +433,24 @@
             return bookmarkedQuestionDiv;
         }
         function redirectToPage(probId) {
-            // Logic to get the question ID and redirect to the corresponding path
-            const questionID = probId; // Replace with your logic to get the question ID
-            window.location.href = `/RCET/practice/${questionID}`;
-        }
+    // Trigger an HTTP GET request to the server-side route
+    fetch(`/RCET/practice/${probId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to redirect');
+            }
+            // Redirect to the server response URL (if needed)
+            return response.url;
+        })
+        .then(redirectUrl => {
+            // Redirect the user's browser to the determined path
+            window.location.href = redirectUrl;
+        })
+        .catch(error => {
+            console.error('Error redirecting:', error);
+        });
+}
+
 
 
 
@@ -478,17 +492,17 @@
 
 
 
-const searchInput = document.getElementById('searchInput');
-
+const problems = document.querySelectorAll('.problem');
+    const searchInputProb = document.getElementById('searchInputforProblems');
 // Add event listener for key press
-searchInput.addEventListener('keypress', function (event) {
+searchInputProb.addEventListener('keypress', function (event) {
     // Check if Enter key is pressed
     if (event.key === 'Enter') {
         // Get the value from the search input
-        const searchTerm = searchInput.value;
+        const searchTerm = searchInputProb.value;
         console.log(searchTerm);
         // Redirect to the realm_search page with the search term as a query parameter
-        window.location.href = `/realm_search?q=${searchTerm}`;
+        window.location.href = `/problem_search?q=${searchTerm}`;
     }
 });
 

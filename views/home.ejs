@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script href="/public/scripts/transitions.js"></script>
-    
+
 
 </head>
 
@@ -19,34 +19,35 @@
         <div class="navBar">
             <!-- <video src="background.mp4" muted autoplay loop playsinline style="display: fixed; size: 1px;"></video>
                     -->
-      
+
             <div class="logo">
                 <a href="/home"><img src="/images/logo.png" class="logoMain"></a>
             </div>
-      
+
             <div class="all_icons">
                 <div class="panelIcon"><a href="/profile"><img src="/images/profile.png"></a></a></div>
                 <div class="panel2Icon"><a href="/home"><img src="/images/greenHome.png"></a></div>
                 <div class="panel3Icon"><a href="/questionbank"><img src="/images/codeBank.png"></a></div>
                 <span class="username">
-                  <%= username %>
-              </span>
+                    <%= username %>
+                </span>
             </div>
-      
+
             <div class="searchAndExit">
                 <div class="searchBar">
-                    <div class="searchInput"><input type="text" placeholder="Search" class="searchi" id="searchInput"></div>
+                    <div class="searchInput"><input type="text" placeholder="Search" class="searchi" id="searchInput">
+                    </div>
                     <!-- <div class="searchImage"><ion-icon name="search-outline" class="search" type="button" value="Join" id="create_realme"></ion-icon></div> -->
                     <input type="button" class="searchbit"
                         style="display: flex; background-color: transparent; border-style: none;" value="🔍"
                         id="create_realme">
-      
+
                 </div>
                 <div class="Exit">
-      
+
                     <img src="/images/user_profile.png" name="exit-outline" class="exitIcon" id="exitIcon"
                         onclick="wrong"></ion-icon>
-      
+
                     <div class="profileOptions">
                         <ul>
                             <li><a href="/logout">Logout</a></li>
@@ -54,10 +55,10 @@
                         </ul>
                     </div>
                 </div>
-      
+
             </div>
-      
-      
+
+
         </div>
 
 
@@ -168,134 +169,37 @@
                 <div class="event_calendar_Section" style="padding: 10px 0 10px 10px;">
                     <div class="scrollable_event">
                         <div class="event-container">
-                            <h3 class="year">2024</h3>
+                            <% arrContests.forEach(contest=> { %>
+                                <div class="event">
+                                    <div class="event-left">
+                                        <div class="event-date">
+                                            <!-- Replace with dynamic contest start date -->
+                                            <div class="date">
+                                                <%= contest.startdate %>
+                                            </div>
+                                            <!-- Replace with dynamic contest month -->
+                                            <div class="month">
+                                                <%= contest.startmonth %>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="event">
-                                <div class="event-left">
-                                    <div class="event-date">
-                                        <div class="date">20</div>
-                                        <div class="month">Jun</div>
+                                    <div class="event-right">
+                                        <!-- Replace with dynamic contest title -->
+                                        <h3 class="event-title">
+                                            <%= contest.text %>
+                                        </h3>
+                                        <!-- Replace with dynamic contest description -->
+                                        <div class="event-description">
+                                            <!-- Add contest description here -->
+                                        </div>
+                                        <!-- Replace with dynamic contest timing -->
+                                        <div class="event-timing">
+                                            <img src="images/time.png" alt="" /> <!-- Add dynamic timing here -->
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="event-right">
-                                    <h3 class="event-title">GDSC</h3>
-
-                                    <div class="event-description">
-                                        GameJam_2024 by Alexandra
-                                    </div>
-
-                                    <div class="event-timing">
-                                        <img src="images/time.png" alt="" /> 10:00 am
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <div class="event-left">
-                                    <div class="event-date">
-                                        <div class="date">10</div>
-                                        <div class="month">Aug</div>
-                                    </div>
-                                </div>
-
-                                <div class="event-right">
-                                    <h3 class="event-title">GDSC</h3>
-
-                                    <div class="event-description">
-                                        JavaScript_Bootcamp by Michael
-                                    </div>
-
-                                    <div class="event-timing">
-                                        <img src="images/time.png" alt="" /> 10:45 am
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <div class="event-left">
-                                    <div class="event-date">
-                                        <div class="date">2</div>
-                                        <div class="month">Mar</div>
-                                    </div>
-                                </div>
-
-                                <div class="event-right">
-                                    <h3 class="event-title">GDSC</h3>
-
-                                    <div class="event-description">
-                                        MachineLearning_Bootcamp by Sophie Turner
-                                    </div>
-
-                                    <div class="event-timing">
-                                        <img src="images/time.png" alt="" /> 10:00 am
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <div class="event-left">
-                                    <div class="event-date">
-                                        <div class="date">15</div>
-                                        <div class="month">Sep</div>
-                                    </div>
-                                </div>
-
-                                <div class="event-right">
-                                    <h3 class="event-title">Be_Cool_Event_2024</h3>
-
-                                    <div class="event-description">
-                                        Be Cool Event 2024 by John Doe
-                                    </div>
-
-                                    <div class="event-timing">
-                                        <img src="images/time.png" alt="" /> 10:45 am
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <div class="event-left">
-                                    <div class="event-date">
-                                        <div class="date">8</div>
-                                        <div class="month">Nov</div>
-                                    </div>
-                                </div>
-
-                                <div class="event-right">
-                                    <h3 class="event-title">Learning_Mistakes_Event_2024</h3>
-
-                                    <div class="event-description">
-                                        Learning Mistakes Event 2024 by Emma Smith
-                                    </div>
-
-                                    <div class="event-timing">
-                                        <img src="images/time.png" alt="" /> 10:00 am
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="event">
-                                <div class="event-left">
-                                    <div class="event-date">
-                                        <div class="date">23</div>
-                                        <div class="month">Jul</div>
-                                    </div>
-                                </div>
-
-                                <div class="event-right">
-                                    <h3 class="event-title">Hours_Brain_Again_Event_2024</h3>
-
-                                    <div class="event-description">
-                                        Hours Brain Again Event 2024 by Daniel Brown
-                                    </div>
-
-                                    <div class="event-timing">
-                                        <img src="images/time.png" alt="" /> 10:30 am
-                                    </div>
-                                </div>
-                            </div>
-
+                                <% }) %>
 
                         </div>
                     </div>
@@ -416,8 +320,7 @@
 
 
     <script>
-
-
+       
         document.addEventListener('DOMContentLoaded', function () {
 
 

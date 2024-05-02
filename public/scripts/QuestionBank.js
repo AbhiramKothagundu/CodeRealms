@@ -114,7 +114,57 @@ async function addBookmarkToDatabase(questionText, difficulty) {
     }
 }
 
-async function deleteBookmarkFromDatabase(questionText) {
+// Remove existing event listeners before adding new ones
+// Remove existing event listeners before adding new ones
+document.querySelectorAll('.iconFire').forEach(icon => {
+    icon.removeEventListener('click', bookmarkHandler); // Remove existing event listener
+    icon.addEventListener('click', bookmarkHandler); // Add event listener
+});
+
+// Define the bookmarkHandler function
+let isBookmarking = false; // Flag to prevent multiple bookmarking attempts
+
+// Add event listener only once
+document.addEventListener('click', function(event) {
+    if (event.target.matches('.iconFire') && !isBookmarking) {
+        isBookmarking = true; // Set flag to true to prevent multiple clicks
+        bookmarkHandler(event.target).finally(() => {
+            isBookmarking = false; // Reset flag once bookmarking process is done
+        });
+    }
+}, false);
+
+// Define the bookmarkHandler function
+async function bookmarkHandler(icon) {
+    const questionCard = icon.closest('.questionCard');
+    const questionText = questionCard.querySelector('.QuestionDown .Down1 p').innerText;
+    const bookmarkContent = document.querySelector('.bookmarkContent');
+
+    try {
+        // Check if the question is already bookmarked
+        const existingBookmark = bookmarkContent.querySelector(`.bookmarkedQuestion[data-question="${questionText}"]`);
+
+        if (existingBookmark) {
+            // If already bookmarked, remove from display and delete from database
+            const bookmarkId = existingBookmark.dataset.id;
+            bookmarkContent.removeChild(existingBookmark);
+            await deleteBookmarkFromDatabase(bookmarkId);
+            console.log('Bookmark removed successfully');
+        } else {
+            // If not bookmarked, add to display and database
+            const difficulty = questionCard.dataset.difficulty;
+            const bookmarkedQuestionDiv = createBookmarkElement(questionText, difficulty);
+            bookmarkContent.appendChild(bookmarkedQuestionDiv);
+            await addBookmarkToDatabase(questionText, difficulty);
+            console.log('Bookmark added successfully');
+        }
+    } catch (error) {
+        console.error('Error handling bookmark:', error);
+    }
+}
+
+
+async function deleteBookmarkFromDatabase(bookmarkId) {
     // Send a DELETE request to the server to remove the bookmark
     try {
         const response = await fetch('/bookmark', {

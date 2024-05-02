@@ -103,7 +103,10 @@ img{
     margin-left: 0;
     position: relative;
 }
-
+.searchInputProb{
+  margin-left: 0;
+  position: relative;
+}
 .searchi:focus{
     border-color: rgba(74, 51, 60, 0.4);
     background-color:rgb(34, 32, 32);
