@@ -123,6 +123,24 @@ exports.realm_search = async (req, res) => {
 }
 
 
+exports.problem_search = async (req, res) => {
+    try {
+        const searchTerm = req.query.q;
+        console.log("Search Term: ", searchTerm);
+        const regex = new RegExp(`^${searchTerm}`, 'i');
+console.log("Regex: ", regex);
+        // Fetch problems from the database where the title matches the regular expression
+        const problems = await Problem.find({ QuestionTitle: { $regex: regex } });
+
+        // Render the 'problem_search' template with the searchTerm and problems
+        res.render('problem_search', { searchTerm, problems });
+        console.log("Problems: ", problems);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+}
+
 
 
 exports.join_realm = async (req, res) => {

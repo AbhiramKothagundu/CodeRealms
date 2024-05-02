@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Search</title>
+    <!-- Include any necessary CSS files -->
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: 'Varela', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111010;
+        }
+        .main_page_Layout {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #111010;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(199, 181, 181, 0.1);
+        }
+        .problemList {
+            margin-top: 20px;
+        }
+        .problem {
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+            cursor: pointer;
+            margin-bottom: 10px; /* Add margin between each problem */
+        }
+        h1{
+            color: white;
+            align-items: center;
+            text-align: center;
+            border-bottom: 9px;
+        }
+        .problem h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #18801d;
+        }
+        .cardHeader {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cardControls {
+            display: flex;
+        }
+        .Control {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 1px solid #333;
+            border-radius: 50%;
+        }
+        .Control.redControl {
+            background-color: red;
+        }
+        .Control.yellowControl {
+            background-color: yellow;
+        }
+        .Control.greenControl {
+            background-color: green;
+        }
+        .realme_container {
+            margin-top: 20px;
+        }
+        .titleP{
+            margin: 10px;
+            height: auto;
+        }
+        p{
+            color: tomato;
+        }
+        /* Add more styles as needed */
+    </style>
+</head>
+<body>
+    
+
+    <!-- Display the list of problems -->
+  
+
+    <div class="main_page_Layout">
+        <h1 >.</h1>
+       
+        <div class="problemList">
+            <% problems.forEach(problem => { %>
+                <div class="problem" onclick="redirectToPage('<%= problem.QuestionId %>')">
+                 <div class="titleP">   <h2><%= problem.QuestionTitle %></h2></div><br>
+                 <div class="titleP">   <h2><p>QUESTION :</p> <%= problem.text %></h2></div><br>
+                    <div class="titleP">    <h2><p>INPUT FORMAT : </p>INPUT FORMAT <%= problem.QuestionInputFormat %></h2> </div><br>
+                        <div class="titleP">   <h2><p>OUTPUT FORMAT :</p><%= problem.QuestionOutputFormat %></h2></div><br>
+                            <div class="titleP">    <h2><p>DIFFICULTY : </p> <%= problem.difficulty %></h2></div><br>
+                    <!-- Add any other details of the problem you want to display -->
+                </div>
+                <br> <!-- Add a line break between each problem -->
+            <% }); %>
+        </div>
+        <div class="cardHeader">
+           
+            <div class="cardControls">
+                <div class="Control redControl"></div>
+                <div class="Control yellowControl"></div>
+                <div class="Control greenControl"></div>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="realme_container">
+         
+        </div>
+    </div>
+
+    <footer id="footer">
+        <!-- Your footer content -->
+    </footer>
+
+   
+    <script>
+        const searchInput = document.getElementById('searchInputforProblems');
+    const problems = document.querySelectorAll('.problem');
+
+    searchInput.addEventListener('input', function(event) {
+        const searchTerm = event.target.value.toLowerCase().trim();
+
+        problems.forEach(problem => {
+            const problemTitle = problem.querySelector('h2').textContent.toLowerCase();
+            if (problemTitle.startsWith(searchTerm) || searchTerm === '') {
+                problem.style.display = 'block';
+            } else {
+                problem.style.display = 'none';
+            }
+        });
+    });
+    
+    function redirectToPage(questionID) {
+            window.location.href = `/RCET/practice/${questionID}`;
+        }
+
+    </script>
+</body>
+</html>

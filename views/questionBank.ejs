@@ -43,7 +43,7 @@
 
         <div class="searchAndExit">
             <div class="searchBar">
-                <div class="searchInput"><input type="text" placeholder="Search" class="searchi" id="searchInput"></div>
+                <div class="searchInputProb"><input type="text" placeholder="Search" class="searchi" id="searchInputforProblems"></div>
                 <!-- <div class="searchImage"><ion-icon name="search-outline" class="search" type="button" value="Join" id="create_realme"></ion-icon></div> -->
                 <input type="button" class="searchbit"
                     style="display: flex; background-color: transparent; border-style: none;" value="🔍"
@@ -348,7 +348,7 @@
 
                     if (existingBookmark) {
                         // If already bookmarked, remove from display and delete from database
-                        bookmarkContent.removeChild(existingBookmark);
+                        // bookmarkContent.removeChild(existingBookmark);
                         await deleteBookmarkFromDatabase(questionText);
                         console.log('Bookmark removed successfully');
                     } else {
@@ -478,17 +478,17 @@
 
 
 
-const searchInput = document.getElementById('searchInput');
-
+const problems = document.querySelectorAll('.problem');
+    const searchInputProb = document.getElementById('searchInputforProblems');
 // Add event listener for key press
-searchInput.addEventListener('keypress', function (event) {
+searchInputProb.addEventListener('keypress', function (event) {
     // Check if Enter key is pressed
     if (event.key === 'Enter') {
         // Get the value from the search input
-        const searchTerm = searchInput.value;
+        const searchTerm = searchInputProb.value;
         console.log(searchTerm);
         // Redirect to the realm_search page with the search term as a query parameter
-        window.location.href = `/realm_search?q=${searchTerm}`;
+        window.location.href = `/problem_search?q=${searchTerm}`;
     }
 });
 
