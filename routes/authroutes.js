@@ -14,7 +14,7 @@ const Problem = require('../models/problem');
 
 
 router.post("/signup", AuthController.signup);
-router.post("/signin", AuthController.signin);
+router.post("/signin",  AuthController.signin);
 
 router.get('/realms/:realmName', RealmController.findRealmDetails);
 

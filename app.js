@@ -75,9 +75,9 @@ renderPage('/contactus', 'contatus', {
     title: 'Contact Us',
 });
 
-// renderPage('/leaderboard', 'leadbrd', {
-//     title: 'Leaderboard',
-// });
+renderPage('/leaderboard', 'leadbrd', {
+    title: 'Leaderboard',
+});
 
 renderPage('/editdata', 'editdata', {
     title: 'Edit data',

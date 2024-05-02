@@ -52,6 +52,7 @@ exports.signin = async (req, res) => {
         }else {
             req.session.userID = user._id; // Set session for user
             user.lastLogin = new Date(); // Update last login date
+            await user.save();
         }
 
         // Generate JWT token
