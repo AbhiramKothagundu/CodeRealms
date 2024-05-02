@@ -14,7 +14,6 @@ const checkAuth = async (req, res, next) => {
         }
 
         req.user = user; // Attach user object to request for later use
-        console.log('User authenticated:', user.username);
         next(); // Continue to the next middleware or route handler
     } catch (err) {
         console.error(err.message);
@@ -25,4 +24,3 @@ const checkAuth = async (req, res, next) => {
 module.exports = {
     checkAuth
 };
-

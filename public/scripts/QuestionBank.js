@@ -114,9 +114,6 @@ async function addBookmarkToDatabase(questionText, difficulty) {
     }
 }
 
-<<<<<<< Updated upstream
-async function deleteBookmarkFromDatabase(questionText) {
-=======
 // Remove existing event listeners before adding new ones
 // Remove existing event listeners before adding new ones
 document.querySelectorAll('.iconFire').forEach(icon => {
@@ -168,7 +165,6 @@ async function bookmarkHandler(icon) {
 
 
 async function deleteBookmarkFromDatabase(bookmarkId) {
->>>>>>> Stashed changes
     // Send a DELETE request to the server to remove the bookmark
     try {
         const response = await fetch('/bookmark', {
