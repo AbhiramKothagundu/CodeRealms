@@ -35,7 +35,10 @@ const badgesData = [
 const badgesContainer = document.querySelector('.badges');
 
 async function displayBadges(filter) {
-    const badgesData = await fetch('http://localhost:3030/badges')
+    const PORT = 8000;
+    const SERVER_URL = `http://localhost:${PORT}`
+
+    const badgesData = await fetch(`${SERVER_URL}/badges`)
         .then(data => data.json())
         .then(data => data.badges);
     console.log(badgesData);

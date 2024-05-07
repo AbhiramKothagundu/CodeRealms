@@ -35,6 +35,13 @@ const UserSchema = new mongoose.Schema({
         type: String,
 
     },
+    lastLogin: {
+        type: Date
+    },
+    dailyStreak: {
+        type: Number,
+        default: 0
+    },
     instagramLink: {
         type: String,
 
@@ -113,6 +120,7 @@ const UserSchema = new mongoose.Schema({
         }
     ],
     banned: { type: Boolean, default: false }
+
 
 
 });
