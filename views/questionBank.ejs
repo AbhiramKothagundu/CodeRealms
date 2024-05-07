@@ -156,7 +156,7 @@
                         </h4>
                         
                     </div>
-                    <button class="codehere" onclick="redirectToPage('<%= username %>', '<%= problem.QuestionId %>')"
+                    <button class="codehere" onclick="redirectToPage('<%= problem.QuestionId %>')"
                         >
                         CODE HERE!!
                     </button>
@@ -433,24 +433,10 @@
             return bookmarkedQuestionDiv;
         }
         function redirectToPage(probId) {
-    // Trigger an HTTP GET request to the server-side route
-    fetch(`/RCET/practice/${probId}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to redirect');
-            }
-            // Redirect to the server response URL (if needed)
-            return response.url;
-        })
-        .then(redirectUrl => {
-            // Redirect the user's browser to the determined path
-            window.location.href = redirectUrl;
-        })
-        .catch(error => {
-            console.error('Error redirecting:', error);
-        });
-}
-
+            // Logic to get the question ID and redirect to the corresponding path
+            const questionID = probId; // Replace with your logic to get the question ID
+            window.location.href = `/RCET/practice/${questionID}`;
+        }
 
 
 

@@ -59,25 +59,7 @@ router.get('/users/:userId/contestmonthdata', async (req, res) => {
 
 
 
-router.get('/api/user/weekdata', checkAuth, async (req, res) => {
-    try {
-      const userId = req.user._id; // Retrieve userId from session
-      if (!userId) {
-        return res.status(401).json({ error: 'User not authenticated' });
-      }
-      const user = await User.findById(userId);
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
-      return res.status(200).json(user.weekdata); // Send weekdata as response
-    } catch (error) {
-      console.error('Error fetching week data:', error.message);
-      return res.status(500).json({ error: 'Internal server error' });
-    }
-  });
-
-  // Route to retrieve month data
-router.get('/api/user/monthdata', checkAuth, async (req, res) => {
+router.get('/api/user/weekdata', async (req, res) => {
     try {
       const userId = req.session.userID; // Retrieve userId from session
       if (!userId) {
@@ -87,16 +69,17 @@ router.get('/api/user/monthdata', checkAuth, async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      return res.json(user.monthdata); // Send monthdata as response
+      res.json(user.weekdata); // Send weekdata as response
     } catch (error) {
-      console.error('Error fetching month data:', error.message);
-      return res.status(500).json({ error: 'Internal server error' });
+      console.error('Error fetching week data:', error.message);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 
-  router.get('/api/user/contestmonthdata', checkAuth, async (req, res) => {
+  // Route to retrieve month data
+router.get('/api/user/monthdata', async (req, res) => {
     try {
-      const userId = req.user._id; // Retrieve userId from session
+      const userId = req.session.userID; // Retrieve userId from session
       if (!userId) {
         return res.status(401).json({ error: 'User not authenticated' });
       }
@@ -104,10 +87,27 @@ router.get('/api/user/monthdata', checkAuth, async (req, res) => {
       if (!user) {
         return res.status(404).json({ error: 'User not found' });
       }
-      return res.json(user.contestmonthdata); // Send monthdata as response
+      res.json(user.monthdata); // Send monthdata as response
     } catch (error) {
       console.error('Error fetching month data:', error.message);
-      return res.status(500).json({ error: 'Internal server error' });
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  router.get('/api/user/contestmonthdata', async (req, res) => {
+    try {
+      const userId = req.session.userID; // Retrieve userId from session
+      if (!userId) {
+        return res.status(401).json({ error: 'User not authenticated' });
+      }
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+      res.json(user.contestmonthdata); // Send monthdata as response
+    } catch (error) {
+      console.error('Error fetching month data:', error.message);
+      res.status(500).json({ error: 'Internal server error' });
     }
   });
 

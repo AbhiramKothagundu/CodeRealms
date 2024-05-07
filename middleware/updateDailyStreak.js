@@ -7,8 +7,7 @@ const updateDailyStreak = async (req, res, next) => {
 
             // Get today's date and yesterday's date
             const today = new Date().toDateString();
-            const yesterday = new Date(Date.now() - 86400000).toDateString();
-
+            const yesterday = new Date(Date.now() - 86400000).toDateString(); 
             // If last login date is yesterday, increment streak
             if (user.lastLogin && user.lastLogin.toDateString() === yesterday) {
                 user.dailyStreak++;
