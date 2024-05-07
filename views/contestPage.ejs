@@ -152,6 +152,27 @@
         *::-webkit-scrollbar-thumb {
             box-shadow: inset0 0 0 10px;
         }
+
+        .back {
+            display: flex;
+            height: 28px;
+            width: 85px;
+            align-items: center;
+            justify-content: center;
+            background-color: #3232324b;
+            border-radius: 3px;
+            letter-spacing: 1px;
+            transition: all 0.2s linear;
+            cursor: pointer;
+            color: snow;
+            border: none;
+            float: right;
+            background: #3232324b;
+        }
+
+        .back:hover{
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -167,7 +188,7 @@
                 </div>
             </div>
 
-            <a href="/home">go_back</a>
+            <a href="/home" class="back">Back</a>
 
             <h1>Contest Page</h1>
 

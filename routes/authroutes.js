@@ -21,7 +21,6 @@ router.get('/realms/:realmName', RealmController.findRealmDetails);
 router.delete('/realms/:realmId' , RealmController.deleteRealm);
 
 
-
 // Route to render index.ejs
 router.get("/", (req, res) => {
     res.render('index');
@@ -30,7 +29,6 @@ router.get("/", (req, res) => {
 // Route to render login.ejs
 router.get("/login", (req, res) => {
     res.render('login', { title: "Login", layout: './layouts/authLayout' });
-    
 });
 // Route to render signin.ejs
 router.get("/signin", (req, res) => {

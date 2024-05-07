@@ -68,12 +68,10 @@ exports.realm_search = async (req, res) => {
 
         const regex = new RegExp(`^${searchTerm}`, 'i');
 
-        // Fetch realms from the database where the name matches the regular expression
         const realms = await Realm.find({ name: { $regex: regex } });
 
         const dropdownsHTML = [];
 
-        // Iterate over realms
         for (const realm of realms) {
             // Array to store contest links HTML
             const contestLinksHTML = [];
