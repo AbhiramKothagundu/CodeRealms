@@ -9,7 +9,6 @@
 ![WhatsApp Image 2024-08-08 at 16 27 24_b45d69d2](https://github.com/user-attachments/assets/467bfa9e-c017-49ce-8d2e-132a138471d3)
 ![WhatsApp Image 2024-08-08 at 16 27 24_bf59b8de](https://github.com/user-attachments/assets/7ba12d86-70f0-41b4-a2e8-29ae86c27c03)
 ![WhatsApp Image 2024-08-08 at 16 27 24_d247e8d5](https://github.com/user-attachments/assets/acac0d45-be9d-4d36-af30-4f04b88f9e80)
-![WhatsApp Image 2024-08-08 at 16 27 24_d247e8d5](https://github.com/user-attachments/assets/e2a29deb-32cf-46d4-8812-84dca2c27c07)
 ![WhatsApp Image 2024-08-08 at 16 27 24_e5f29b74](https://github.com/user-attachments/assets/554ddc84-f637-4380-8aed-30b8e8df247c)
 
 
